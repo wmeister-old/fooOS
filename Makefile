@@ -2,13 +2,8 @@ SRC_DIR=src
 BUILD_DIR=build
 BOOTLOADER_SRC=$(SRC_DIR)/bootloader.nasm
 BOOTLOADER_BIN=$(BUILD_DIR)/bootloader.bin
-DISC_IMG=$(BUILD_DIR)/disc.img 
 
-all: $(DISC_IMG)
-
-$(DISC_IMG): $(BOOTLOADER_BIN)
-	dd if=$(BOOTLOADER_BIN) bs=512 of=$(DISC_IMG)
+all: $(BOOTLOADER_BIN)
 
 $(BOOTLOADER_BIN): $(BOOTLOADER_SRC)
 	nasm -f bin -o $(BOOTLOADER_BIN) $(BOOTLOADER_SRC)
-
